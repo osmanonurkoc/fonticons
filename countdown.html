@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            text-align: center;
+            background: linear-gradient(to right, #000000, #16b2a2);
+            color: white;
+            position: relative;
+            padding: 20px;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQB5GJ1z28Dt3RH9IYy-hFn4rQq5Eweyt9ceZ68bgc-4tBO_tLeVk2mzOhQBXKht_HlePmJXbsgNUloPKmeBOwsi1OHlE0eVIDfU4T9E2oygD-IS7D0sNuXBJ62LX_QUtYdTTHa8obK9tJN0YJDUmVVjzcvqGw0lkVd2ACDTcA1zEXmQD49mdtZaju-w/s739/sora-shape-1.png')
+                        no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        h1 {
+            text-transform: uppercase;
+            font-size: 4rem;
+            margin-top: 50px;
+            max-width: 80%;
+            line-height: 1.2;
+        }
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .timer-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            width: 140px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+        .label {
+            font-size: 1.5rem;
+            font-weight: normal;
+            opacity: 0.8;
+        }
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        button, input {
+            padding: 7px;
+            font-size: 0.75rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button {
+            background: white;
+            color: black;
+        }
+        .overlay-image {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.9;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="margin-top: 80px;">Uluslararası Rehabilitasyon ve Disiplinlerarası <br> Etkileşim Kongresi</h1>
+    <div class="timer-container">
+        <div class="timer-box">
+            <span id="hours">00</span>
+            <div class="label">SAAT</div>
+        </div>
+        <div class="timer-box">
+            <span id="minutes">30</span>
+            <div class="label">DAKİKA</div>
+        </div>
+        <div class="timer-box">
+            <span id="seconds">00</span>
+            <div class="label">SANİYE</div>
+        </div>
+    </div>
+    <div class="controls">
+        <input type="number" id="inputMinutes" placeholder="Dakika" min="1" max="999">
+        <button onclick="startCountdown()">Başlat</button>
+        <button onclick="stopCountdown()">Durdur</button>
+        <button onclick="resetCountdown()">Sıfırla</button>
+    </div>
+    <img class="overlay-image" src="https://blogger.googleusercontent.com/img/a/AVvXsEg_-rMRMGJy5pNsvckdq5gaVBRRD5WeWA7xUAdfe5gwvVyOp5zPSDHq7FoCAZoT6nozQuPu4nanhDHZ2UPPHY6NaMLOKArxKRhZgWrCtpQvYyVi2Ub0OTYv7-G4EEOCFJnlw5_nyJ--xiLPuR0MGH0E3-Vod4YwaRMfuuMEFWSKIpHdIzg_VteRy6vnr8Wz=s200">
+    <audio id="alarm" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <script>
+        let countdown;
+        let totalSeconds = 30 * 60;
+
+        function startCountdown() {
+            const input = document.getElementById("inputMinutes").value;
+            if (input && input > 0) {
+                totalSeconds = input * 60;
+            }
+            clearInterval(countdown);
+            countdown = setInterval(updateCountdown, 1000);
+        }
+
+        function stopCountdown() {
+            clearInterval(countdown);
+        }
+
+        function resetCountdown() {
+            clearInterval(countdown);
+            totalSeconds = 30 * 60;
+            document.getElementById("hours").textContent = "00";
+            document.getElementById("minutes").textContent = "30";
+            document.getElementById("seconds").textContent = "00";
+        }
+
+        function updateCountdown() {
+            if (totalSeconds <= 0) {
+                clearInterval(countdown);
+                document.getElementById("alarm").play();
+                return;
+            }
+            totalSeconds--;
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+        }
+    </script>
+</body>
+</html>
