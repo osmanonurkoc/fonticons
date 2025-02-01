@@ -19,10 +19,19 @@
             justify-content: flex-start;
             height: 100vh;
             text-align: center;
-            background: linear-gradient(to right, #000000, #16b2a2);
+            background: linear-gradient(90deg, #2a3b3b, #2c3e50, #283d3b, #4b6043, #625a42, #693d3d, #4a3c6a, #2b5c9b);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 60s infinite alternate ease-in-out;
             color: white;
             position: relative;
             padding: 20px;
+        }
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 25% 55%; }
+            50% { background-position: 50% 60%; }
+            75% { background-position: 75% 55%; }
+            100% { background-position: 100% 50%; }
         }
         body::before {
             content: "";
@@ -40,7 +49,7 @@
         h1 {
             text-transform: uppercase;
             font-size: 4rem;
-            margin-top: 50px;
+            margin-top: 80px;
             max-width: 80%;
             line-height: 1.2;
         }
@@ -99,7 +108,7 @@
     </style>
 </head>
 <body>
-    <h1 style="margin-top: 80px;">Uluslararası Rehabilitasyon ve Disiplinlerarası <br> Etkileşim Kongresi</h1>
+    <h1>Uluslararası Rehabilitasyon ve Disiplinlerarası <br> Etkileşim Kongresi</h1>
     <div class="timer-container">
         <div class="timer-box">
             <span id="hours">00</span>
@@ -142,24 +151,22 @@
         function resetCountdown() {
             clearInterval(countdown);
             totalSeconds = 30 * 60;
-            document.getElementById("hours").textContent = "00";
-            document.getElementById("minutes").textContent = "30";
-            document.getElementById("seconds").textContent = "00";
+            updateCountdown();
         }
 
         function updateCountdown() {
-            if (totalSeconds <= 0) {
-                clearInterval(countdown);
-                document.getElementById("alarm").play();
-                return;
-            }
-            totalSeconds--;
             const hours = Math.floor(totalSeconds / 3600);
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
             document.getElementById("hours").textContent = String(hours).padStart(2, '0');
             document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
             document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+            if (totalSeconds > 0) {
+                totalSeconds--;
+            } else {
+                document.getElementById("alarm").play();
+                clearInterval(countdown);
+            }
         }
     </script>
 </body>
