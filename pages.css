@@ -1,39 +1,25 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(rgba(128, 128, 128, 0.8), rgba(211, 211, 211, 0.8)),
+                    url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQB5GJ1z28Dt3RH9IYy-hFn4rQq5Eweyt9ceZ68bgc-4tBO_tLeVk2mzOhQBXKht_HlePmJXbsgNUloPKmeBOwsi1OHlE0eVIDfU4T9E2oygD-IS7D0sNuXBJ62LX_QUtYdTTHa8obK9tJN0YJDUmVVjzcvqGw0lkVd2ACDTcA1zEXmQD49mdtZaju-w/s739/sora-shape-1.png')
+                    no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        line-height: 1.6;
+    }
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8"></meta>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
-    <title>osmanonurkoc</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(rgba(128, 128, 128, 0.8), rgba(211, 211, 211, 0.8)),
-                        url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQB5GJ1z28Dt3RH9IYy-hFn4rQq5Eweyt9ceZ68bgc-4tBO_tLeVk2mzOhQBXKht_HlePmJXbsgNUloPKmeBOwsi1OHlE0eVIDfU4T9E2oygD-IS7D0sNuXBJ62LX_QUtYdTTHa8obK9tJN0YJDUmVVjzcvqGw0lkVd2ACDTcA1zEXmQD49mdtZaju-w/s739/sora-shape-1.png')
-                        no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .text-card {
-            max-width: 800px; /* Adjust width as needed */
-            margin: 30px auto; /* Center the card horizontally */
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-            padding: 20px 30px; /* Add some padding inside the card */
-            border-radius: 30px; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            text-align: left; /* Align text to the left */
-            line-height: 1.8; /* Improve text readability */
-            box-sizing: border-box; /* Ensure padding is included in the width */
-        }
-    </style>
-</head>
-<body>
-    <div class="text-card">
-
-<strike>full-width</strike>
-    </div>
-</body>
-</html>
+    .text-card {
+        max-width: 800px;
+        margin: 30px auto;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px 30px;
+        border-radius: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        line-height: 1.8;
+        box-sizing: border-box;
+    }
+</style>
